@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanya Rastogi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#17271D;
+    --forest-deep:#0F1B14;
+    --paper:#EDE6D3;
+    --lime:#B4CE7B;
+    --lime-deep:#8FAE55;
+    --cream:#EDE6D9;
+    --cream-muted: rgba(237,230,217,0.66);
+    --ink-muted: rgba(23,39,29,0.62);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--forest);
+    color:var(--cream);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Instrument Serif',serif;}
+  a{color:inherit;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 32px;}
+  .panel-paper{background:var(--paper);color:var(--forest);}
+  .panel-paper .ink-muted{color:var(--ink-muted);}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(15,27,20,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(237,230,217,0.14);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;}
+  nav .name{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:22px;color:var(--lime);}
+  nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:13.5px;}
+  nav a{text-decoration:none;color:var(--cream-muted);}
+  nav a:hover{color:var(--lime);}
+  @media (max-width:640px){ nav ul{display:none;} }
+
+  /* HERO */
+  header.hero{padding:110px 0 90px;position:relative;overflow:hidden;}
+  header.hero .kicker{font-size:14px;color:var(--lime);margin-bottom:22px;}
+  header.hero h1{
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
+    font-size:clamp(40px,6.6vw,68px);
+    line-height:1.12;
+    margin:0 0 34px;
+    max-width:16ch;
+  }
+  header.hero .lede{
+    font-size:19px;
+    max-width:52ch;
+    color:var(--cream-muted);
+    margin:0 0 36px;
+  }
+  header.hero .meta{font-size:14px;color:var(--cream-muted);}
+  header.hero .meta a{border-bottom:1px solid rgba(180,206,123,0.4);text-decoration:none;}
+  header.hero .meta a:hover{color:var(--lime);border-color:var(--lime);}
+
+  /* hand-drawn squiggle divider */
+  .squiggle{display:block;width:100%;height:36px;margin:0;}
+  .squiggle path{fill:none;stroke:var(--lime);stroke-width:2.5;stroke-linecap:round;}
+
+  section{padding:88px 0;}
+  section .tag{
+    font-size:14px;color:var(--lime);margin:0 0 40px;font-family:'Space Grotesk',sans-serif;font-weight:600;
+  }
+  .panel-paper .tag{color:var(--lime-deep);}
+
+  /* THROUGHLINE ESSAY */
+  .essay{
+    display:grid;grid-template-columns:1.3fr 0.9fr;gap:60px;align-items:start;
+  }
+  .essay p{margin:0 0 18px;max-width:48ch;font-size:16.5px;}
+  .pull-card{
+    background:var(--forest);color:var(--cream);
+    border:2px solid var(--lime);
+    padding:30px 26px;
+    transform:rotate(-2deg);
+    font-family:'Instrument Serif',serif;font-style:italic;
+    font-size:25px;line-height:1.42;
+  }
+  @media (max-width:760px){ .essay{grid-template-columns:1fr;gap:32px;} .pull-card{transform:rotate(-1deg);} }
+
+  /* EXPERIENCE — journal entries */
+  .role{
+    padding:28px 0;border-top:2px dashed rgba(237,230,217,0.22);
+    display:grid;grid-template-columns:170px 1fr;gap:26px;
+  }
+  .role:first-of-type{border-top:none;}
+  .role .when{font-size:13px;color:var(--lime);padding-top:4px;}
+  .role h3{font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;font-weight:400;margin:0 0 4px;}
+  .role .org{font-size:14px;color:var(--cream-muted);margin-bottom:12px;}
+  .role p{margin:0 0 8px;max-width:56ch;font-size:15.5px;color:var(--cream-muted);}
+  @media (max-width:640px){ .role{grid-template-columns:1fr;gap:6px;} }
+
+  /* CREATIVE — filmstrip */
+  .art-intro{max-width:58ch;margin:0 0 40px;color:var(--ink-muted);font-size:16.5px;}
+  .filmstrip{
+    display:flex;gap:18px;overflow-x:auto;padding-bottom:16px;
+    scroll-snap-type:x mandatory;
+  }
+  .filmstrip::-webkit-scrollbar{height:6px;}
+  .filmstrip::-webkit-scrollbar-thumb{background:var(--lime-deep);}
+  .film-card{
+    flex:0 0 210px;scroll-snap-align:start;
+    background:var(--forest);color:var(--cream);
+    border:2px solid var(--forest);
+    padding:22px 20px;min-height:150px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    text-decoration:none;
+    transition:transform 0.15s ease, border-color 0.15s ease;
+  }
+  .film-card:nth-child(3n+2){transform:rotate(-1.5deg);}
+  .film-card:nth-child(3n+3){transform:rotate(1.2deg);}
+  .film-card:hover{border-color:var(--lime);}
+  .film-card .title{font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;}
+  .film-card .date{font-size:12.5px;color:var(--lime);margin-top:14px;}
+
+  .cover-wrap{margin:44px 0 0;border:2px solid var(--forest);}
+  .cover-wrap img{width:100%;display:block;}
+  .cover-cap{font-size:13px;color:var(--ink-muted);margin-top:10px;}
+
+  .honors{list-style:none;padding:0;margin:36px 0 0;display:flex;gap:18px;flex-wrap:wrap;}
+  .honors li{
+    border:2px solid var(--lime-deep);padding:14px 18px;font-size:14.5px;
+    max-width:300px;transform:rotate(-0.8deg);
+  }
+  .honors li:nth-child(even){transform:rotate(0.8deg);}
+  .placeholder{color:var(--lime-deep);font-style:italic;}
+
+  .pub-label{font-size:13px;color:var(--lime-deep);margin:44px 0 14px;font-weight:600;}
+  .pub-tags{list-style:none;padding:0;margin:0;display:flex;gap:10px;flex-wrap:wrap;}
+  .pub-tags li a{
+    display:inline-block;text-decoration:none;font-size:13.5px;
+    border:1.5px solid var(--forest);padding:8px 14px;
+    color:var(--forest);transition:background 0.15s ease, color 0.15s ease;
+  }
+  .pub-tags li a:hover{background:var(--forest);color:var(--paper);}
+
+  /* CURRENT — scattered cards */
+  .current-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .current-list li{
+    background:var(--paper);color:var(--forest);
+    padding:24px 20px;font-size:15px;min-height:130px;
+    border-bottom:5px solid var(--lime-deep);
+  }
+  .current-list li:nth-child(1){transform:rotate(-1.5deg);}
+  .current-list li:nth-child(2){transform:rotate(1deg);}
+  .current-list li:nth-child(3){transform:rotate(-0.6deg);}
+  @media (max-width:760px){ .current-list{grid-template-columns:1fr;} .current-list li{transform:none !important;} }
+
+  footer{background:var(--lime);color:var(--forest-deep);padding:64px 0 48px;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  footer h2{margin:0 0 8px;font-size:38px;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
+  footer .links{display:flex;gap:24px;font-size:14px;font-weight:600;}
+  footer a{text-decoration:none;border-bottom:2px solid var(--forest-deep);}
+  footer .fine{font-size:13px;margin-top:44px;opacity:0.7;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="name">Tanya Rastogi</div>
+    <ul>
+      <li><a href="#throughline">About</a></li>
+      <li><a href="#experience">Research &amp; Finance</a></li>
+      <li><a href="#creative">Creative Practice</a></li>
+      <li><a href="#current">Currently</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Stanford &middot; Management Science &amp; Engineering</div>
+    <h1>I like sitting with something until I actually understand it.</h1>
+    <p class="lede">For years that meant painting: a street in Delhi, a park in San Francisco, whatever I couldn't stop looking at. Lately it means carbon markets and the policy behind them. Same habit, different subject.</p>
+    <p class="meta">Stanford, CA &nbsp;&middot;&nbsp; <a href="mailto:trastogi@stanford.edu">trastogi@stanford.edu</a> &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/t-rastogi/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="https://tanyarastogi.artstation.com/" target="_blank" rel="noopener">ArtStation</a></p>
+  </div>
+</header>
+
+<svg class="squiggle" viewBox="0 0 980 36" preserveAspectRatio="none">
+  <path d="M0,18 C 80,2 130,34 210,18 C 290,2 340,34 420,18 C 500,2 550,34 630,18 C 710,2 760,34 840,18 C 900,4 940,28 980,18" />
+</svg>
+
+<section id="throughline" class="panel-paper">
+  <div class="wrap">
+    <div class="tag">The throughline</div>
+    <div class="essay">
+      <div>
+        <p>I started drawing seriously as a kid, mostly portraits and street scenes. My grandmother's hands. A winter afternoon in Delhi. A mural in Chinatown I walked past for months before I finally sat down to sketch it. None of it works unless I actually look long enough to catch the detail that makes it true instead of generic.</p>
+        <p>I didn't plan on that habit mattering for research, but it does. When I was modeling carbon accounting methods for forest management projects, or trying to figure out why a tutoring policy proposal was thin on evidence, the job was basically the same: sit with something messy until the real pattern shows up, instead of taking the first plausible explanation at face value.</p>
+      </div>
+      <div class="pull-card">
+        Markets are just another system built out of people. I got into investing because I wanted a way to act on what paying close attention actually tells you.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="tag">Research &amp; finance</div>
+
+    <div class="role">
+      <div class="when">May 2026 &ndash; Present</div>
+      <div>
+        <h3>Summer Research Fellow</h3>
+        <div class="org">Doerr School of Sustainability, Stanford</div>
+        <p>Built a quantitative modeling framework in Python and Excel to evaluate carbon accounting methods used in U.S. improved forest management projects. The goal is better carbon market policy and crediting decisions.</p>
+        <p>First-author research abstract accepted for the AGU Fall Meeting 2026.</p>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">Mar &ndash; Aug 2026</div>
+      <div>
+        <h3>Research and Policy Intern</h3>
+        <div class="org">Scale Initiative, Stanford</div>
+        <p>Processed data across all 50 states to strengthen a research proposal shaping tutoring policy for over 1,000 school districts. Found real gaps in the underlying methodology and coordinated interviews with policymakers to help close them.</p>
+        <p>Selected to present the resulting policy brief at the 2026 National Forum on Education Policy.</p>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">Mar &ndash; May 2026</div>
+      <div>
+        <h3>Spring Private Equity Analyst</h3>
+        <div class="org">Bregal Sagemount</div>
+        <p>Evaluated vertical SaaS investment opportunities through revenue benchmarking, competitive analysis, and management research, supporting growth equity decisions for a $7.5B AUM firm.</p>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">Oct 2025 &ndash; Present</div>
+      <div>
+        <h3>Analyst</h3>
+        <div class="org">Charles R. Blyth Fund</div>
+        <p>Investment analysis for a $200K student-led fund. Wrote an in-depth report on a key ESG target that informed a buy-hold recommendation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="creative" class="panel-paper">
+  <div class="wrap">
+    <div class="tag">Creative practice</div>
+    <p class="art-intro">Five years of portraits and places, mostly graphite and paint, mostly about people. A selection is below. The rest is on ArtStation. A few pieces exist in both mediums: "Birthright" started as a drawing before it became a poem published in The Adroit Journal.</p>
+
+    <div class="filmstrip">
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/a0QQ50" target="_blank" rel="noopener"><span class="title">Dolores Park</span><span class="date">2025</span></a>
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/6Lmkrw" target="_blank" rel="noopener"><span class="title">SF Chinatown</span><span class="date">2025</span></a>
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/4NOdYW" target="_blank" rel="noopener"><span class="title">Life Cycle</span><span class="date">August 2025</span></a>
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/JrBWAA" target="_blank" rel="noopener"><span class="title">Interim</span><span class="date">March 2025</span></a>
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/bglQVn" target="_blank" rel="noopener"><span class="title">In Gilded Walls</span><span class="date">September 2024</span></a>
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/4NXz61" target="_blank" rel="noopener"><span class="title">Foreign</span><span class="date">July 2024</span></a>
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/LRyo1K" target="_blank" rel="noopener"><span class="title">A Woven Life</span><span class="date">November 2023</span></a>
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/0430Qw" target="_blank" rel="noopener"><span class="title">Liminal Memory of a Winter in Delhi</span><span class="date">February 2023</span></a>
+      <a class="film-card" href="https://tanyarastogi.artstation.com/projects/o2dBww" target="_blank" rel="noopener"><span class="title">Homemade Samosas</span><span class="date">April 2022</span></a>
+    </div>
+
+    <div class="cover-wrap">
+      <img src="https://cdnb.artstation.com/p/users/covers/005/274/291/default/31a0b34b1cace7007a1cd0aa624778a7.jpg" alt="Tanya Rastogi, cover artwork">
+      <div class="cover-cap">From ArtStation. See the full portfolio for the complete series.</div>
+    </div>
+
+    <ul class="honors">
+      <li>2025 YoungArts Winner in Visual Arts</li>
+      <li>Scholastic Portfolio Gold Medalist and New York Times Award, 2025</li>
+      <li>National Student Poet Semifinalist, 2023 and 2024</li>
+      <li>Iowa Grant Wood Legacy Prize, 2023 and 2024</li>
+    </ul>
+
+    <p class="pub-label">Selected publications</p>
+    <ul class="pub-tags">
+      <li><a href="https://theadroitjournal.org/issue-forty-six/issue-forty-six-tanya-rastogi/" target="_blank" rel="noopener">The Adroit Journal, "Birthright"</a></li>
+      <li><a href="https://shopoetryjournal.com/cover-artist-feature-tanya-rastogi-sho-no-6/" target="_blank" rel="noopener">Shō Poetry Journal, cover artist</a></li>
+      <li><a href="https://gonelawn.net/journal/issue54/Rastogi.php" target="_blank" rel="noopener">Gone Lawn, "you were seven when you learned that"</a></li>
+      <li><a href="https://dishsoap-quarterly.com/11-19-24/where-the-birds-went/" target="_blank" rel="noopener">Dishsoap Quarterly, "Where the Birds Went"</a></li>
+      <li><a href="https://humanitiesiowa.org/wp-content/uploads/2024/12/Voices-from-the-Prairie-2024.pdf" target="_blank" rel="noopener">Voices from the Prairie, "Homemade Samosas"</a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="current">
+  <div class="wrap">
+    <div class="tag">What I'm currently digging into</div>
+    <ul class="current-list">
+      <li><span class="placeholder">[e.g. a specific carbon credit methodology debate, a climate-tech deal, a paper on forest carbon accounting you've been chewing on]</span></li>
+      <li><span class="placeholder">[e.g. a company or fund in the energy transition space you've been tracking and why]</span></li>
+      <li><span class="placeholder">[e.g. a book, podcast, or long-read on markets/investing you'd actually recommend, with one sentence on what it changed in how you think]</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Let's talk.</h2>
+      <p style="margin:0;max-width:44ch;">Always glad to talk energy markets, carbon policy, or portraiture. Usually in that order, sometimes not.</p>
+    </div>
+    <div class="links">
+      <a href="mailto:trastogi@stanford.edu">Email</a>
+      <a href="https://www.linkedin.com/in/t-rastogi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://tanyarastogi.artstation.com/" target="_blank" rel="noopener">ArtStation</a>
+    </div>
+  </div>
+  <div class="wrap fine">&copy; Tanya Rastogi</div>
+</footer>
+
+</body>
+</html>

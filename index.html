@@ -84,12 +84,13 @@
     display:grid;grid-template-columns:1.3fr 0.9fr;gap:60px;align-items:start;
   }
   .throughline-photo{
-    min-height:300px;
     border:2px solid var(--forest);
-    background:rgba(23,39,29,0.08);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--ink-muted);
-    font-family:'Instrument Serif',serif;font-style:italic;font-size:23px;
+    overflow:hidden;
+  }
+  .throughline-photo img{
+    width:100%;
+    height:auto;
+    display:block;
   }
   .throughline-photo + .essay{margin-top:46px;}
   .essay p{margin:0 0 18px;max-width:48ch;font-size:16.5px;}
@@ -209,7 +210,9 @@
 
 <section id="throughline" class="panel-paper">
   <div class="wrap">
-    <div class="throughline-photo" role="img" aria-label="Photo placeholder">Photo</div>
+    <div class="throughline-photo">
+      <img src="aaa.webp" alt="Colorful illustrated San Francisco street scene">
+    </div>
     <div class="essay">
       <div>
         <p>I started drawing early in life, mostly portraits and family scenes: beautiful textiles, a winter afternoon in Delhi, a street in SF Chinatown. This requires observation, hours of analyzing every shape and color present in an image.</p>

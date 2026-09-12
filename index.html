@@ -54,10 +54,10 @@
   header.hero h1{
     font-family:'Instrument Serif',serif;
     font-weight:400;
-    font-size:clamp(40px,6.6vw,68px);
+    font-size:clamp(48px,8vw,84px);
     line-height:1.12;
     margin:0 0 34px;
-    max-width:16ch;
+    max-width:14ch;
   }
   header.hero .lede{
     font-size:19px;
@@ -83,6 +83,15 @@
   .essay{
     display:grid;grid-template-columns:1.3fr 0.9fr;gap:60px;align-items:start;
   }
+  .throughline-photo{
+    min-height:300px;
+    border:2px solid var(--forest);
+    background:rgba(23,39,29,0.08);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink-muted);
+    font-family:'Instrument Serif',serif;font-style:italic;font-size:23px;
+  }
+  .throughline-photo + .essay{margin-top:46px;}
   .essay p{margin:0 0 18px;max-width:48ch;font-size:16.5px;}
   .pull-card{
     background:var(--forest);color:var(--cream);
@@ -187,7 +196,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="kicker">Stanford &middot; Management Science &amp; Engineering</div>
+    <div class="kicker">Stanford &middot; Management Science &amp; Engineering &middot; Minor in Energy Engineering</div>
     <h1>I seek to understand our lived experience and shape the world for the better.</h1>
     <p class="lede">For years, that meant expression through artwork and poetry. Lately it means climate tech, markets, and policy.</p>
     <p class="meta">Stanford, CA &nbsp;&middot;&nbsp; <a href="mailto:trastogi@stanford.edu">trastogi@stanford.edu</a> &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/t-rastogi/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="https://tanyarastogi.artstation.com/" target="_blank" rel="noopener">ArtStation</a></p>
@@ -200,7 +209,7 @@
 
 <section id="throughline" class="panel-paper">
   <div class="wrap">
-    <div class="tag">The throughline</div>
+    <div class="throughline-photo" role="img" aria-label="Photo placeholder">Photo</div>
     <div class="essay">
       <div>
         <p>I started drawing early in life, mostly portraits and family scenes: beautiful textiles, a winter afternoon in Delhi, a street in SF Chinatown. This requires observation, hours of analyzing every shape and color present in an image.</p>

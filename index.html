@@ -82,7 +82,7 @@
 
   /* THROUGHLINE ESSAY */
   .essay{
-    display:grid;grid-template-columns:1.3fr 0.9fr;gap:60px;align-items:start;
+    display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;max-width:780px;margin:46px auto 0;
   }
   .throughline-photo{
     border:2px solid var(--forest);
@@ -109,7 +109,7 @@
   }
   .pull-card:nth-child(2){transform:rotate(1.5deg);}
   .pull-card .highlight{color:var(--lime);}
-  @media (max-width:760px){ .essay{grid-template-columns:1fr;gap:32px;} .pull-card{transform:rotate(-1deg);} .pull-card:nth-child(2){transform:rotate(1deg);} }
+  @media (max-width:760px){ .essay{grid-template-columns:1fr;gap:32px;max-width:none;} .pull-card{transform:rotate(-1deg);} .pull-card:nth-child(2){transform:rotate(1deg);} }
 
   /* EXPERIENCE — journal entries */
   .role{
